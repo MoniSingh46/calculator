@@ -1,0 +1,139 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+    <style>
+        .a {
+            display: flex;
+            justify-content: center;
+        }
+        .calculator {
+            height: 300px;
+            width: 200px;
+            border: 1px solid black;
+            border-radius: 15px;
+            box-shadow: 2px 2px rgb(107, 106, 106);
+            background: linear-gradient(45deg, rgba(110, 109, 109, 0.541),rgb(53, 52, 52));padding: 10px;}
+             
+        .calculator input {
+            text-align: right;
+            background: transparent;
+            color: aliceblue;
+            box-shadow: 0px 3px 10px white;
+
+        }
+
+        button {
+            border: none;
+            height: 45px;
+            width: 45px;
+            border-radius: 50%;
+            margin: 1px;
+            background: transparent;
+            box-shadow: 0px 0px 6px white;           
+        }
+        input {
+            width: 100%;
+            height: 60px;
+            font-size: 20px;
+            border: none;
+            border-radius: 15px;
+            margin-bottom: 6px;    
+        }
+        .operator{color: red;font-size: 18px;}
+        .eql{background:orange ;}
+    </style>
+
+</head>
+
+<body>
+    <div class="a">
+        <div class="calculator">
+            <input id="inputBox" type="text" value="0">
+            <div>
+                <button class="operator">AC</button>
+                <button class="operator">DEL</button>
+                <button class="operator">%</button>
+                <button class="operator">/</button>
+            </div>
+            <div>
+                <button>9</button>
+                <button>8</button>
+                <button>7</button>
+                <button class="operator">*</button>
+            </div>
+            <div>
+                <button>6</button>
+                <button>5</button>
+                <button>4</button>
+                <button class="operator">-</button>
+            </div>
+            <div> <button>3</button>
+                <button>2</button>
+                <button>1</button>
+                <button class="operator">+</button>
+            </div>
+            <div>
+                <button>00</button>
+                <button>0</button>
+                <button>.</button>
+                <button class="eql">=</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        let input = document.getElementById("inputBox");
+        let buttons = document.querySelectorAll('button'); // select all buttons
+        let string = "";
+        let arr = Array.from(buttons); // create an array of collection dom
+
+        arr.forEach(button => {
+            button.addEventListener('click', (e) => {
+                if (e.target.innerHTML === '=') {
+                    try {
+                        string = eval(string);
+                        input.value = string;
+                    } catch (error) {
+                        input.value = 'Error';
+                    }
+                } else if (e.target.innerHTML === 'AC') {
+                    string = "";
+                    input.value = string;
+                } else if (e.target.innerHTML === 'DEL') {
+                    string = string.substring(0, string.length - 1); // fix substring
+                    input.value = string;
+                } else {
+                    string += e.target.innerHTML;
+                    input.value = string;
+                }
+            });
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+    <!-- <div class="slides">
+    <img src="image/img.jpg">
+    <img class="im" src="image/img1.jpg">
+    <img class="im" src="image/img2.jpg">
+    <img class="im" src="image/img3.jpg">
+    
+    </div>
+   -->
+
+
+</body>
+
+</html>
